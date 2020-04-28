@@ -79,9 +79,10 @@ public class MainActivity extends AppCompatActivity {
      */
     public void compute(String toSolve) {
         //Not Finished
-        //if (!isValid(toSolve)) {
-            //calculatorInput = "";
-            //setCalculatorView(calculatorInput);
+        if (!isValid(toSolve)) {
+            calculatorInput = "";
+            setCalculatorView(calculatorInput);
+        }
             //return;
         //}
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
