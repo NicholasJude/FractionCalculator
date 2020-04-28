@@ -30,10 +30,10 @@
         android:text="@string/multiply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nine"
-        app:layout_constraintTop_toBottomOf="@+id/-" />
+        app:layout_constraintTop_toBottomOf="@+id/minus" />
 
     <Button
-        android:id="@+id/-"
+        android:id="@+id/minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
@@ -75,7 +75,7 @@
         android:layout_marginTop="1dp"
         android:onClick="onClick6"
         android:text="@string/six"
-        app:layout_constraintEnd_toStartOf="@+id/-"
+        app:layout_constraintEnd_toStartOf="@+id/minus"
         app:layout_constraintStart_toEndOf="@+id/five"
         app:layout_constraintTop_toBottomOf="@+id/three" />
 

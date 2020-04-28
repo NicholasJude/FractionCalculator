@@ -19,12 +19,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Called by the Android system when the activity is to be set up.
      * @param savedInstanceState information from the previously terminated instance (unused)
-     *                           this is a test
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activitymain);
         calculatorInput = "";
         setCalculatorView(calculatorInput);
     }
