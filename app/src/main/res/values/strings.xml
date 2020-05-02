@@ -17,6 +17,9 @@
     <string name="multiply">x</string>
     <string name="divide">÷</string>
     <string name="equals">=</string>
-    <string name="fraction">FRACTION</string>
+    <string name="fraction">BUILD FRACTION</string>
+    <string name="fractionToDouble">CONVERT FRACTION to NUMBER</string>
+    <string name="doubleTOFraction">CONVERT NUMBER to FRACTION</string>
     <string name="calculator">CALCULATOR</string>
+    <string name="launch">START CALCULATOR</string>
 </resources>
