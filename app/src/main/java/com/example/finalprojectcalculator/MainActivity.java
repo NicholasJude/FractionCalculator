@@ -9,17 +9,14 @@ import android.widget.TextView;
 
 import org.apache.commons.lang3.math.Fraction;
 
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
      * String created in the Calculator View
      */
     private static String calculatorInput;
-
-    /**
-     * Counts the number of fractions in the operation.
-     */
-    private int fractionCount = 0;
 
     /**
      * Called by the Android system when the activity is to be set up.
@@ -128,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
      * @return if the string contains a fraction
      */
     public boolean containsFraction(String input) {
+        int fractionCount = 0;
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == '/') {
                 fractionCount++;
@@ -161,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (additionCount == 1) {
-            return "+";
+            return Pattern.quote("+");
         }
         if (subtractionCount == 1) {
             return "-";
@@ -190,28 +188,31 @@ public class MainActivity extends AppCompatActivity {
             double isNumber = 0.0000;
             if (containsFraction(unknownNeedsConverting)) {
                 isFraction = Fraction.getFraction(unknownNeedsConverting);
-                fractionCount = 0;
             }
             if (!(containsFraction(unknownNeedsConverting))) {
                 isNumber = Double.parseDouble(unknownNeedsConverting);
             }
             if (howConvert.equals("NUMBER") && isNumber == 0.0000) {
                 String output = Double.toString(isFraction.doubleValue());
+                calculatorInput = output;
                 setCalculatorView(output);
                 return;
             }
             if (howConvert.equals("NUMBER") && isFraction == null) {
                 String output = Double.toString(isNumber);
+                calculatorInput = output;
                 setCalculatorView(output);
                 return;
             }
             if (howConvert.equals("FRACTION") && isFraction == null) {
                 String output = Fraction.getFraction(isNumber).toString();
+                calculatorInput = output;
                 setCalculatorView(output);
                 return;
             }
             if (howConvert.equals("FRACTION") && isNumber == 0.0000) {
                 String output = isFraction.toString();
+                calculatorInput = output;
                 setCalculatorView(output);
                 return;
             }
@@ -236,14 +237,12 @@ public class MainActivity extends AppCompatActivity {
         Fraction secondFrac = null;
         if (containsFraction(piece1)) {
             firstFrac = Fraction.getFraction(piece1);
-            fractionCount = 0;
         }
         if (!(containsFraction(piece1))) {
             firstNum = Double.parseDouble(piece1);
         }
         if (containsFraction(piece2)) {
             secondFrac = Fraction.getFraction(piece2);
-            fractionCount = 0;
         }
         if (!(containsFraction(piece2))) {
             secondNum = Double.parseDouble(piece2);
@@ -252,24 +251,28 @@ public class MainActivity extends AppCompatActivity {
         if (firstFrac == null && secondFrac == null) {
             double answer = solveNoFrac(firstNum, secondNum, operator);
             String output = Double.toString(answer);
+            calculatorInput = output;
             setCalculatorView(output);
             return;
         }
         if (firstNum == 0.0000 && secondNum == 0.0000) {
             Fraction answer = solveFrac3(firstFrac, secondFrac, operator);
             String output = answer.toString();
+            calculatorInput = output;
             setCalculatorView(output);
             return;
         }
         if (firstNum == 0.0000 && secondFrac == null) {
             Fraction answer = solveFrac1(firstFrac, secondNum, operator);
             String output = answer.toString();
+            calculatorInput = output;
             setCalculatorView(output);
             return;
         }
         if (firstFrac == null && secondNum == 0.0000) {
             Fraction answer = solveFrac2(firstNum, secondFrac, operator);
             String output = answer.toString();
+            calculatorInput = output;
             setCalculatorView(output);
         }
     }
@@ -284,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
      * @return the answer
      */
     public double solveNoFrac(double x, double y, String operator) {
-        if (operator.equals("+")) {
+        if (operator.equals(Pattern.quote("+"))) {
             return x + y;
         }
         if (operator.equals("-")) {
